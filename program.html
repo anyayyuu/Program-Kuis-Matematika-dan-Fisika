@@ -1,0 +1,62 @@
+import random
+
+# Definisikan pertanyaan-pertanyaan matematika beserta jawabannya
+pertanyaan = [
+    {
+        "soal": "Berapakah hasil dari 2 + 2?",
+        "jawaban": {
+            "A": "3",
+            "B": "4",
+            "C": "5",
+            "D": "6"
+        },
+        "jawaban_benar": "B"
+    },
+    {
+        "soal": "Berapakah hasil dari 5 x 3?",
+        "jawaban": {
+            "A": "12",
+            "B": "15",
+            "C": "18",
+            "D": "20"
+        },
+        "jawaban_benar": "B"
+    },
+    # Lanjutkan dengan pertanyaan-pertanyaan lainnya...
+]
+
+# Fungsi untuk menampilkan pertanyaan dan pilihan jawaban
+def tampilkan_pertanyaan(pertanyaan):
+    print(pertanyaan["soal"])
+    for pilihan, jawaban in pertanyaan["jawaban"].items():
+        print(f"{pilihan}. {jawaban}")
+
+# Fungsi untuk memeriksa jawaban yang diberikan oleh pengguna
+def periksa_jawaban(pertanyaan, jawaban_pengguna):
+    return jawaban_pengguna == pertanyaan["jawaban_benar"]
+
+# Fungsi untuk menghitung nilai akhir
+def hitung_nilai(jawaban_benar):
+    return jawaban_benar * 10
+
+# Program utama
+jawaban_benar = 0
+
+# Acak urutan pertanyaan
+random.shuffle(pertanyaan)
+
+# Tampilkan dan proses setiap pertanyaan
+for idx, pertanyaan_sekarang in enumerate(pertanyaan):
+    print(f"\nPertanyaan {idx+1}:")
+    tampilkan_pertanyaan(pertanyaan_sekarang)
+    jawaban_pengguna = input("Masukkan pilihan jawaban (A/B/C/D): ")
+    
+    if periksa_jawaban(pertanyaan_sekarang, jawaban_pengguna.upper()):
+        print("Jawaban Anda benar!")
+        jawaban_benar += 1
+    else:
+        print("Jawaban Anda salah.")
+
+# Hitung dan tampilkan nilai akhir
+nilai_akhir = hitung_nilai(jawaban_benar)
+print(f"\nNilai akhir Anda: {nilai_akhir}")
